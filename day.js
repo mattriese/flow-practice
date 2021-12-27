@@ -6,36 +6,35 @@ const day = [];
 function fillDay() {
   let incrementedMS = -57900000;
   for (let i = 0; i < 288; i++) {
-    let newTime = new Date;
+    let newTime = new Date();
     incrementedMS += 300000;
     newTime.setTime(incrementedMS);
     let timeString = newTime.toLocaleTimeString('en-US');
-    timeString = timeString.slice(0,5) + timeString.slice(8)
+    timeString = timeString.slice(0, 5) + timeString.slice(8);
     //console.log(timeString);
-    day.push(timeString)
+    day.push(timeString);
   }
 }
-// fillDay()
+fillDay();
 
 function fillTable(day) {
   console.debug('fillTable ran');
-  // for (let i = 0; i < cats; i++) {
-  //   $('thead tr').append(`<th>${categories[i].title}</th>`);
-  // }
-  $('thead tr').append('TIME', 'PLAN', 'REALITY');
+  let headings = ['Time', 'Plan', 'Reality'];
+  for (let i = 0; i < 3; i++) {
+    $('thead tr').append(`<th>${headings[i]}</th>`);
+  }
+  //$('thead tr').append('TIME', 'PLAN', 'REALITY');
   for (let i = 0; i < day.length; i++) {
     let $newRow = $(`<tr>
     <td>${day[i]}</td>
     <td></td>
     <td></td>
   </tr>`);
-    for (let j = 0; j < cats; j++) {
-      $newRow.append(`<td class="r${i} c${j}">?</td>`);
-    }
+    // for (let j = 0; j < cats; j++) {
+    //   $newRow.append(`<td class="r${i} c${j}">?</td>`);
+    // }
     $('#tbody').append($newRow);
   }
 }
 
-class Day(){
-
-}
+fillTable(day);
