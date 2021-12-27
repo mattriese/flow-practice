@@ -10,10 +10,14 @@ function fillDay() {
     incrementedMS += 300000;
     newTime.setTime(incrementedMS);
     let timeString = newTime.toLocaleTimeString('en-US');
-    timeString = timeString.slice(0, 5) + timeString.slice(8);
-    //console.log(timeString);
-    day.push(timeString);
+    if (timeString.length === 11) {
+      timeString = timeString.slice(0, 5) + timeString.slice(8);
+    } else {
+      timeString = timeString.slice(0, 4) + timeString.slice(7);
+    }
+    day.push({ time: timeString, color: '' });
   }
+  //console.log(day);
 }
 fillDay();
 
@@ -26,9 +30,9 @@ function fillTable(day) {
   //$('thead tr').append('TIME', 'PLAN', 'REALITY');
   for (let i = 0; i < day.length; i++) {
     let $newRow = $(`<tr>
-    <td>${day[i]}</td>
-    <td></td>
-    <td></td>
+    <td>${day[i].time}</td>
+    <td class="plan"></td>
+    <td class="reality"></td>
   </tr>`);
     // for (let j = 0; j < cats; j++) {
     //   $newRow.append(`<td class="r${i} c${j}">?</td>`);
@@ -36,5 +40,6 @@ function fillTable(day) {
     $('#tbody').append($newRow);
   }
 }
-
 fillTable(day);
+
+$('table').on('click', function (event) {});
