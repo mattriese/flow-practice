@@ -42,4 +42,6 @@ function fillTable(day) {
 }
 fillTable(day);
 
-$('table').on('click', function (event) {});
+$('table').on('click', function (event) {
+  $(event.target).css('background-color', 'red');
+});
